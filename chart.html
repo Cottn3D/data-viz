@@ -1,0 +1,38 @@
+<html>
+    <head>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
+            google.charts.load("current", {packages:['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ["Place", "Percentage", { role: "style" } ],
+                ["East Coast U.S.", 0.57, "#b87333"],
+                ["Europe", 0.29, "silver"],
+                ["West Coast U.S.", 0.12, "gold"]
+            ]);
+
+            var view = new google.visualization.DataView(data);
+            view.setColumns([0, 1,
+                            { calc: "stringify",
+                                sourceColumn: 1,
+                                type: "string",
+                                role: "annotation" },
+                            2]);
+
+            var options = {
+                title: "Distribution of Places Carson has Been",
+                width: '100%',
+                height: 400,
+                bar: {groupWidth: "80%"},
+                legend: { position: "none" },
+                vAxis: {title: 'Percentage of Total'}
+            };
+            var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+            chart.draw(view, options);
+        }
+        </script>
+        <div id="columnchart_values"></div>
+    </body>
+  </html>
+  
